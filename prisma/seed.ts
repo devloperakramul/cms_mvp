@@ -1,33 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-import bcrypt from 'bcryptjs';
 
 const prisma = new PrismaClient();
-
-async function main() {
-    // Create initial company with hashed password
-    const hashedPassword = bcrypt.hashSync('password', 10);
-    await prisma.company.create({
-        data: {
-            name: 'Example School',
-            email: 'admin@example.com',
-            password: hashedPassword,
-            address: '123 Main St',
-            city: 'Anytown',
-            state: 'CA',
-            zipCode: '12345',
-            phone: '555-1234'
-        }
-    });
-}
-
-main()
-    .catch(e => {
-        console.error(e);
-        process.exit(1);
-    })
-    .finally(async () => {
-        await prisma.$disconnect();
-    });
 
 async function main() {
     // Sample pages data
